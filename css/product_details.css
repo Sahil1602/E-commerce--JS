@@ -1,0 +1,46 @@
+#main-div-page2{
+    width: 85%;
+    margin: 0 auto;
+    height: 120vh;
+}
+
+.displayImg{
+    width: 30%;
+    padding-top: 20vh;
+    position: relative;
+}
+
+#detail-wrap{
+    position: absolute;
+    top: 20vh;
+    left: 40%;
+}
+
+#detail-wrap > button{
+    background-color: teal;
+    color: white;
+    border: none;
+    font-size: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+
+
+.product-preview-wrap{
+    height: 10vh;
+    display: flex;
+    
+}
+
+.preview-card{
+    height: 100%;
+    margin-right: 5%;
+    /* background-color: whitesmoke; */
+    padding: 4px;
+    border-radius: 2px;
+}
+
+.selected {
+    border: solid #2198e6 2px;
+}

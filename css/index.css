@@ -115,10 +115,15 @@ body{
 
 .cards{
     width: 100%;
-    /* background-color: wheat; */
+    background-color: white;
     border-radius: 4px;
-    box-shadow: 0px 3px 15px rgba(88, 88, 88, 0.2);
+    box-shadow: 5px 5px rgb(230, 229, 229);
 }
+
+.cards:hover{
+    transform: scale(1.1);
+}
+
 .cards > img {
     width: 100%;
     border-top-left-radius: 4px;

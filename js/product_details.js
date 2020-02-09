@@ -100,6 +100,7 @@ function createProductDetailPage(obj){
     	        parentDiv.children[i].classList.remove('selected');
             }
             e.target.classList.add('selected');
+
         }
         
     }
@@ -109,6 +110,10 @@ function createProductDetailPage(obj){
     var addToCart = document.createElement('button');
     addToCart.innerHTML = 'Add to Cart';
     detailWrap.appendChild(addToCart);
+
+    addToCart.onclick = function(){
+        
+    }
 
     return page2Wrap;
     

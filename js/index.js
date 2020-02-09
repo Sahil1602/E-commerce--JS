@@ -86,6 +86,13 @@ function createAccessoriesCard(obj){
 }
 
 
+
+var productCountItems = document.getElementById("item-count");
+productCountItems.innerHTML = productCount;
+
+localStorage.setItem("productCount", cartItems.innerHTML);
+
+
 var clothCardSection = document.getElementById('cloth-cards-wrap');
 var accessoreyCardSection = document.getElementById('access-cards-wrap');
 

@@ -15,6 +15,8 @@ $(Document).ready(function(){
 //     <p>Rs 2599</p>
 // </div> */}
 
+
+
 function createClothesCard(obj){
     var clothCardWrap = document.createElement('div');
     clothCardWrap.className = 'cards';
@@ -78,7 +80,8 @@ function createAccessoriesCard(obj){
         console.log(obj.id);
         location.assign("product_details.htm");
     }
-    
+    var itemCount = document.getElementById('item-count');
+    itemCount.innerHTML = localStorage.getItem('count') > 0 ? localStorage.getItem('count') : 0;
 
     return accessoryCardWrap;
 
@@ -87,10 +90,10 @@ function createAccessoriesCard(obj){
 
 
 
-var productCountItems = document.getElementById("item-count");
-productCountItems.innerHTML = productCount;
+// var productCountItems = document.getElementById("item-count");
+// productCountItems.innerHTML = productCount;
 
-localStorage.setItem("productCount", cartItems.innerHTML);
+// localStorage.setItem("productCount", cartItems.innerHTML);
 
 
 var clothCardSection = document.getElementById('cloth-cards-wrap');

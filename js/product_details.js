@@ -100,7 +100,6 @@ function createProductDetailPage(obj){
     	        parentDiv.children[i].classList.remove('selected');
             }
             e.target.classList.add('selected');
-
         }
         
     }
@@ -111,9 +110,30 @@ function createProductDetailPage(obj){
     addToCart.innerHTML = 'Add to Cart';
     detailWrap.appendChild(addToCart);
 
+    // var countElement = document.getElementById('item-count');
+    // var count = countElement.innerText;
+
+
+    var itemCount = document.getElementById('item-count');
+    count = localStorage.getItem('count') > 0 ? localStorage.getItem('count') : 0;
+    itemCount.innerHTML = count;
+    var productCount = 0;
+
+
     addToCart.onclick = function(){
-        
+        localStorage.setItem('cardId' + obj.id, obj.id) 
+        // location.assign('checkout_page.htm')
+        itemCount.innerHTML = ++count;
+        localStorage.setItem('count' + obj.id, ++productCount);
+        localStorage.setItem('count', count);
+
     }
+
+    // var myCart = document.getElementById('kart')
+    // myCart.onclick(
+    //     location.assign('checkout_page.htm')
+    // )    
+    
 
     return page2Wrap;
     
@@ -122,13 +142,14 @@ function createProductDetailPage(obj){
 var secondPageMain = document.getElementById("main-div-page2");
 
 var xhttp = new XMLHttpRequest();
-xhttp.open('Get', 'https://5d76bf96515d1a0014085cf9.mockapi.io/product', true);
+xhttp.open('GET', 'https://5d76bf96515d1a0014085cf9.mockapi.io/product/', true);
 xhttp.onreadystatechange = function() {
     if(this.readyState === 4) {
         var ecomData = JSON.parse(this.responseText);
         for(var i=0; i<ecomData.length; i++) {
-            if(ecomData[i].id === localStorage.getItem("cardId"))
+            if(ecomData[i].id === localStorage.getItem("cardId")){
                 secondPageMain.appendChild(createProductDetailPage(ecomData[i]));
+            }
         }
     }
 }

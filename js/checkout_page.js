@@ -37,7 +37,7 @@ function createItemCard(obj){
 
     var cartItemCount = document.createElement('p');
     cartItemCount.className = 'cart-item-count';
-    cartItemCount.innerHTML = 'x1';
+    cartItemCount.innerHTML = 'x' + localStorage.getItem('count'+obj.id);
     cartItemDetails.appendChild(cartItemCount);
 
     var cartItemPrice = document.createElement('p');
@@ -69,8 +69,9 @@ xhttp.onreadystatechange = function(){
         
         for(var i=0; i<ecomData.length; i++){
             if(ecomData[i].id === localStorage.getItem('cardId')){
-                // console.log(ecomData[i])
+                console.log(ecomData[i].id)
                 cartItems.appendChild(createItemCard(ecomData[i]));
+
             }
         }
     }

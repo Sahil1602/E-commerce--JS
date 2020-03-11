@@ -117,7 +117,7 @@ function createProductDetailPage(obj){
     var itemCount = document.getElementById('item-count');
     count = localStorage.getItem('count') > 0 ? localStorage.getItem('count') : 0;
     itemCount.innerHTML = count;
-    var productCount = 0;
+    var productCount = localStorage.getItem('count'+obj.id);
 
 
     addToCart.onclick = function(){
@@ -129,17 +129,19 @@ function createProductDetailPage(obj){
 
     }
 
-    // var myCart = document.getElementById('kart')
-    // myCart.onclick(
-    //     location.assign('checkout_page.htm')
-    // )    
+       
     
 
     return page2Wrap;
     
 }
 
-var secondPageMain = document.getElementById("main-div-page2");
+ var secondPageMain = document.getElementById("main-div-page2");
+var myCart = document.getElementById('kart')
+myCart.onclick = function(){
+    location.assign('checkout_page.htm')
+} 
+
 
 var xhttp = new XMLHttpRequest();
 xhttp.open('GET', 'https://5d76bf96515d1a0014085cf9.mockapi.io/product/', true);
@@ -149,6 +151,7 @@ xhttp.onreadystatechange = function() {
         for(var i=0; i<ecomData.length; i++) {
             if(ecomData[i].id === localStorage.getItem("cardId")){
                 secondPageMain.appendChild(createProductDetailPage(ecomData[i]));
+                console.log(ecomData[i])
             }
         }
     }

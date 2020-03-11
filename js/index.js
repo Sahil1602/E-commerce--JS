@@ -88,7 +88,10 @@ function createAccessoriesCard(obj){
 
 }
 
-
+var myCart = document.getElementById('kart')
+myCart.onclick = function(){
+    location.assign('checkout_page.htm')
+}
 
 // var productCountItems = document.getElementById("item-count");
 // productCountItems.innerHTML = productCount;

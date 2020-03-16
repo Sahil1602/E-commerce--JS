@@ -127,9 +127,10 @@ function createProductDetailPage(obj){
         localStorage.setItem('count' + obj.id, ++productCount);
         localStorage.setItem('count', count);
 
+        localStorage.setItem('product' + obj.id, {"count": productCount, "image": obj.preview, "title": obj.name});
     }
 
-       
+
     
 
     return page2Wrap;

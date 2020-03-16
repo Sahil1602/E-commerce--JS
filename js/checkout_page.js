@@ -48,6 +48,8 @@ function createItemCard(obj){
     var itemCount = document.getElementById('item-count');
     itemCount.innerHTML = localStorage.getItem('count');
     console.log(localStorage.getItem('count'))
+
+    
     
     return cartCard;
 

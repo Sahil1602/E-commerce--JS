@@ -81,7 +81,7 @@ function createAccessoriesCard(obj){
         location.assign("product_details.htm");
     }
     var itemCount = document.getElementById('item-count');
-    itemCount.innerHTML = localStorage.getItem('count') > 0 ? localStorage.getItem('count') : 0;
+    itemCount.innerHTML = localStorage.getItem('cart') > 0 ? localStorage.getItem('cart') : 0;
 
     return accessoryCardWrap;
 

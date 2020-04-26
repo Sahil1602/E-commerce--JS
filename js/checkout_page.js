@@ -8,12 +8,30 @@
     </div> */}
 
 console.log('loaded')
+var productCount = document.getElementById('item-count')
+console.log(productCount)
+var cart = (localStorage.getItem('cart') || 0);
+productCount.innerHTML = cart;
+console.log(cart)
 
-// var myCart = document.getElementById('kart')
-// myCart.onclick(
-//     location.assign('checkout_page.htm')
-// )
 
+var productList = JSON.parse(localStorage.getItem('products list'))
+console.log(productList)
+
+var totalItems = document.getElementById('no-of-items')
+totalItems.innerText = 'Total Items: ' + cart;
+
+
+var totalPrice = 0;
+for(let prod of productList){
+    totalPrice += (prod.price * prod.quantity);
+}
+
+console.log(totalPrice);
+
+
+var totalAccount = document.getElementById('total-rupees');
+totalAccount.innerText = totalPrice;
 
 function createItemCard(obj){
     var cartCard = document.createElement('div');
@@ -37,7 +55,7 @@ function createItemCard(obj){
 
     var cartItemCount = document.createElement('p');
     cartItemCount.className = 'cart-item-count';
-    cartItemCount.innerHTML = 'x' + localStorage.getItem('count'+obj.id);
+    cartItemCount.innerHTML = 'x' + obj.quantity;
     cartItemDetails.appendChild(cartItemCount);
 
     var cartItemPrice = document.createElement('p');
@@ -45,9 +63,9 @@ function createItemCard(obj){
     cartItemPrice.innerHTML = 'Amount Rs' + obj.price;
     cartItemDetails.appendChild(cartItemPrice);
 
-    var itemCount = document.getElementById('item-count');
-    itemCount.innerHTML = localStorage.getItem('count');
-    console.log(localStorage.getItem('count'))
+    // var itemCount = document.getElementById('item-count');
+    // itemCount.innerHTML = localStorage.getItem('count');
+    // console.log(localStorage.getItem('count'))
 
     
     
@@ -57,26 +75,36 @@ function createItemCard(obj){
 
 var cartItems = document.getElementById('cart-items');
 
+for(let added of productList){
+    cartItems.appendChild(createItemCard(added));
+}
+
+var checkOut = document.getElementById('checkout-btn');
+checkOut.onclick = function(){
+    location.assign('confirmation_page.htm')
+    localStorage.clear()
+}
 
 
-var xhttp = new XMLHttpRequest();
-xhttp.open('GET', 'https://5d76bf96515d1a0014085cf9.mockapi.io/product/', true);
+
+// var xhttp = new XMLHttpRequest();
+// xhttp.open('GET', 'https://5d76bf96515d1a0014085cf9.mockapi.io/product/', true);
 
 
                       
-xhttp.onreadystatechange = function(){
-    console.log('hello')
-    if(this.readyState === 4){
-        var ecomData = JSON.parse(this.responseText);
+// xhttp.onreadystatechange = function(){
+//     console.log('hello')
+//     if(this.readyState === 4){
+//         var ecomData = JSON.parse(this.responseText);
         
-        for(var i=0; i<ecomData.length; i++){
-            if(ecomData[i].id === localStorage.getItem('cardId')){
-                console.log(ecomData[i].id)
-                cartItems.appendChild(createItemCard(ecomData[i]));
+//         for(var i=0; i<ecomData.length; i++){
+//             if(ecomData[i].id === localStorage.getItem('cardId')){
+//                 console.log(ecomData[i].id)
+//                 cartItems.appendChild(createItemCard(ecomData[i]));
 
-            }
-        }
-    }
-}
+//             }
+//         }
+//     }
+// }
 
-xhttp.send();
+// xhttp.send();

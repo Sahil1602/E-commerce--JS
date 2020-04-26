@@ -21,7 +21,12 @@
     <button>Add to Cart</button>
 </div> */}
 
+var mArr = JSON.parse(localStorage.getItem("products list"));
+if(mArr === null){
+    var mArr = [];
+}
 
+var count = 0;
 
 function createProductDetailPage(obj){
     var page2Wrap = document.createElement('div');
@@ -115,19 +120,38 @@ function createProductDetailPage(obj){
 
 
     var itemCount = document.getElementById('item-count');
-    count = localStorage.getItem('count') > 0 ? localStorage.getItem('count') : 0;
-    itemCount.innerHTML = count;
-    var productCount = localStorage.getItem('count'+obj.id);
+    cart = localStorage.getItem('cart') > 0 ? parseInt(localStorage.getItem('cart')) : 0;
+    itemCount.innerHTML = cart
+    // var productCount = localStorage.getItem('count'+obj.id);
 
 
     addToCart.onclick = function(){
-        localStorage.setItem('cardId' + obj.id, obj.id) 
-        // location.assign('checkout_page.htm')
-        itemCount.innerHTML = ++count;
-        localStorage.setItem('count' + obj.id, ++productCount);
-        localStorage.setItem('count', count);
+        // localStorage.setItem('cardId' + obj.id, obj.id) 
+        // localStorage.setItem('count' + obj.id, ++productCount);
+        
 
-        localStorage.setItem('product' + obj.id, {"count": productCount, "image": obj.preview, "title": obj.name});
+        for(var k=0;k<mArr.length;k++) {
+            if(mArr[k].id === obj.id) {
+                var position = k;
+                break;
+            }
+        }
+        newObj = {"id":obj.id,
+                "name":obj.name,
+                "preview":obj.preview,
+                "price":obj.price,
+                "quantity":count}
+                if(newObj.id === obj.id) {
+                    count= ++count;
+                    var payable = count*obj.price;
+                    newObj.quantity = count;
+                    newObj.payable = payable;
+                }
+        mArr[k] = newObj;
+        cart += 1;
+        itemCount.innerHTML = cart;
+        localStorage.setItem('cart', cart);
+        localStorage.setItem('products list', JSON.stringify(mArr))
     }
 
 
@@ -137,7 +161,7 @@ function createProductDetailPage(obj){
     
 }
 
- var secondPageMain = document.getElementById("main-div-page2");
+var secondPageMain = document.getElementById("main-div-page2");
 var myCart = document.getElementById('kart')
 myCart.onclick = function(){
     location.assign('checkout_page.htm')
